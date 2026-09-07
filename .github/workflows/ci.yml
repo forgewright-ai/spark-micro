@@ -1,5 +1,5 @@
 # spark-micro CI: the plugin inside a real micro, in a pty, against a stub
-# spark -- on Ubuntu and macOS. Plus the privacy patterns and ASCII docs.
+# spark -- on Ubuntu, Arch and macOS. Plus the privacy patterns and ASCII docs.
 name: ci
 on: [push, pull_request, workflow_dispatch]
 jobs:
@@ -25,6 +25,19 @@ jobs:
             ! LC_ALL=C grep -n "[^ -~${tab}]" "$f"; done
       - name: micro
         run: sudo apt-get install -y -qq micro >/dev/null && micro -version
+      - name: the plugin in a pty
+        run: python3 tests/micro_pty.py
+  arch:
+    # the same pty test where micro comes from pacman. The privacy and
+    # ascii gates ran once, on linux.
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    timeout-minutes: 10
+    steps:
+      - run: pacman -Syu --noconfirm --needed git >/dev/null
+      - uses: actions/checkout@v4
+      - name: micro
+        run: pacman -S --noconfirm --needed micro python >/dev/null && micro -version
       - name: the plugin in a pty
         run: python3 tests/micro_pty.py
   macos:

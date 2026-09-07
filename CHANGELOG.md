@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- CI runs the pty test on Arch too (micro from pacman, in a container).
+
 ## 1.4.0
 
 - Its own home: the plugin moved out of the spark repository, where it
