@@ -387,7 +387,9 @@ def main():
         for _ in range(3):
             m.send("\x1b[B")            # Down: to the indented line
         m.send("a")
-        ok(m.expect("applied"), "a says applied", debug_log())
+        # the infobar line, by either of its words: Linux micro draws a
+        # message word by word with a cursor move between them
+        ok(m.expect("applied") or m.expect("Backspace", 3), "a says applied", m.plain()[-400:])
         m.send("\x13")
         time.sleep(0.5)
         m.send("\x11")
