@@ -1,4 +1,4 @@
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 
 -- spark.lua -- spark in micro (the first smart tool). One key, Alt-s, opens
 -- the `spark> ` prompt; Enter alone completes at the cursor, words rewrite
@@ -16,8 +16,8 @@ VERSION = "1.3.0"
 -- again for this file).
 --
 -- The plugin binds NO key itself: a rebind from inside the editor makes micro
--- rewrite bindings.json, which replaces the tracked symlink with a plain
--- file. The key lives in the tracked ~/.config/micro/bindings.json:
+-- rewrite bindings.json (and detach a symlinked one). The key is one line
+-- the user adds to ~/.config/micro/bindings.json (README):
 --     "Alt-s": "lua:spark.prompt"
 -- micro's own switch turns it off: `set spark false`.
 
