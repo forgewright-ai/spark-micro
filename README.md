@@ -34,7 +34,7 @@ and one line in `~/.config/micro/bindings.json` (create it if absent):
 The plugin binds no key by itself: a rebind from inside makes micro rewrite
 `bindings.json`. Update with `git -C ~/.config/micro/plug/spark pull`.
 Not yet in micro's plugin channel; when it is, `micro -plugin install spark`
-does the same.
+does the same. The keys, and what to ask: `CHEATSHEET.md`.
 
 ## Options
 
