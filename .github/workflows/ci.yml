@@ -21,7 +21,7 @@ jobs:
       - name: ascii docs
         run: |
           tab=$(printf '\t')
-          for f in README.md CHANGELOG.md CREDITS.md LICENSE help/spark.md repo.json; do
+          for f in README.md CHANGELOG.md CHEATSHEET.md CREDITS.md LICENSE help/spark.md repo.json; do
             ! LC_ALL=C grep -n "[^ -~${tab}]" "$f"; done
       - name: micro
         run: sudo apt-get install -y -qq micro >/dev/null && micro -version
