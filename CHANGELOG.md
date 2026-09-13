@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- The infobar's `spark: thinking` names the size -- `spark: thinking
+  -- 6142 characters` -- the same fact the reader plugins' pulse
+  shows; an editor stays non-blocking, so the line is still, not
+  animated.
+
 - CI runs the pty test on Arch too (micro from pacman, in a container).
 
 ## 1.4.0

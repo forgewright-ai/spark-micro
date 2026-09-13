@@ -332,7 +332,7 @@ local function spawn(bp, args, stdin, state)
     end
     shell.JobSend(job, stdin)
     job.Stdin:Close()
-    micro.InfoBar():Message("spark: thinking")
+    micro.InfoBar():Message(("spark: thinking -- %d characters"):format(#stdin))
 end
 
 -- --------------------------------------------------------------- kinds --
