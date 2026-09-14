@@ -1,4 +1,4 @@
-VERSION = "1.5.0"
+VERSION = "1.5.1"
 
 -- spark.lua -- spark in micro (the first smart tool). One key, Alt-s, opens
 -- the `spark> ` prompt; Enter alone completes at the cursor, words rewrite
@@ -263,6 +263,15 @@ local function on_exit(_, args)
     if state.kind == "rewrite" then
         if state.acc == state.sel_text then
             notice("spark: unchanged")
+            return
+        end
+        -- a rewrite that came back a fraction of the text it replaces
+        -- is summary-shaped: an answer wearing a rewrite's clothes
+        -- ("summarize" typed without the ?). Show it, do not splice it
+        -- -- the text stays, the answer is read, nothing is lost.
+        if #state.sel_text > 600 and #state.acc * 2 < #state.sel_text then
+            show_pane(state.bp, state.acc)
+            notice("spark: far shorter than the text -- in the pane, not spliced (? asks)")
             return
         end
         -- the text it rewrote must still be there: an edit meanwhile moved
