@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.5.0
 
 - The infobar's `spark: thinking` names the size -- `spark: thinking
   -- 6142 characters` -- the same fact the reader plugins' pulse

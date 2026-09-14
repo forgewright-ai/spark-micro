@@ -1,4 +1,4 @@
-VERSION = "1.4.0"
+VERSION = "1.5.0"
 
 -- spark.lua -- spark in micro (the first smart tool). One key, Alt-s, opens
 -- the `spark> ` prompt; Enter alone completes at the cursor, words rewrite
