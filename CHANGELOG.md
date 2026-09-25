@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.2
+
+- CI proves the plugin on Void Linux too: micro from xbps in a
+  void-glibc-full container, the same pty test as Ubuntu and Arch.
+
 ## 1.5.1
 
 - A summary-shaped rewrite is shown, not spliced: words without a ?
