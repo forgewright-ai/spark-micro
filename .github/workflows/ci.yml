@@ -1,5 +1,5 @@
 # spark-micro CI: the plugin inside a real micro, in a pty, against a stub
-# spark -- on Ubuntu, Arch, Void and macOS. Plus the privacy patterns and ASCII docs.
+# spark -- on Ubuntu, Arch, Void, Fedora, openSUSE and macOS. Plus the privacy patterns and ASCII docs.
 name: ci
 on: [push, pull_request, workflow_dispatch]
 permissions:
@@ -73,6 +73,37 @@ jobs:
           persist-credentials: false
       - name: micro
         run: xbps-install -Sy micro python3 >/dev/null && micro -version
+      - name: the plugin in a pty
+        run: python3 tests/micro_pty.py
+  fedora:
+    # the same pty test where micro comes from dnf. A stable release: the
+    # image is pinned to its number, and the bare image has no python.
+    runs-on: ubuntu-latest
+    container: fedora:44
+    timeout-minutes: 10
+    steps:
+      - run: dnf install -y git >/dev/null
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1
+        with:
+          persist-credentials: false
+      - name: micro
+        run: dnf install -y micro python3 >/dev/null && micro -version
+      - name: the plugin in a pty
+        run: python3 tests/micro_pty.py
+  opensuse:
+    # the same pty test where micro comes from zypper, on Tumbleweed. dup
+    # first (a rolling distro moves as one snapshot); the bare image has
+    # no python.
+    runs-on: ubuntu-latest
+    container: opensuse/tumbleweed:latest   # zizmor: ignore[unpinned-images] a rolling distro: latest is the only Tumbleweed there is, and dup moves it to today anyway
+    timeout-minutes: 10
+    steps:
+      - run: zypper --non-interactive dup --no-recommends >/dev/null; zypper --non-interactive install --no-recommends git >/dev/null
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1
+        with:
+          persist-credentials: false
+      - name: micro
+        run: zypper --non-interactive install --no-recommends micro-editor python3 >/dev/null && micro -version
       - name: the plugin in a pty
         run: python3 tests/micro_pty.py
   macos:

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.3
+
+- CI proves the plugin on Fedora and openSUSE Tumbleweed too: micro from
+  dnf in a fedora:44 container and from zypper (the package is
+  micro-editor) in a tumbleweed container, the same pty test as Ubuntu,
+  Arch and Void.
+
 ## 1.5.2
 
 - CI proves the plugin on Void Linux too: micro from xbps in a
